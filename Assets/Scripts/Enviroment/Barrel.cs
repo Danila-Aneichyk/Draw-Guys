@@ -3,10 +3,12 @@
 public class Barrel : MonoBehaviour
 {
     [SerializeField] private GameObject _explosionEffect;
+    [SerializeField] private Transform _positionToExplode;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Debug.Log("Collision");
+        if (collision.gameObject.CompareTag(Tags.Player))
         {
             Debug.Log("Collision detected");
             Explode(collision);
@@ -15,9 +17,9 @@ public class Barrel : MonoBehaviour
 
     private void Explode(Collision collision)
     {
-        Instantiate(_explosionEffect, transform.position, Quaternion.identity);
+        Instantiate(_explosionEffect, _positionToExplode.position, Quaternion.identity);
 
-        Destroy(collision.gameObject);
+        Destroy(collision.gameObject, 2);
         Destroy(gameObject);
     }
 }

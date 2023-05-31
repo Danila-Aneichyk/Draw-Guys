@@ -268,7 +268,7 @@ namespace Dreamteck.Splines
 
         [HideInInspector]
         [SerializeField]
-        private Spline spline = new Spline(Spline.Type.CatmullRom);
+        public Spline spline = new Spline(Spline.Type.CatmullRom);
         [HideInInspector]
         [SerializeField]
         private SplineSample[] _rawSamples = new SplineSample[0];
