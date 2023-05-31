@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Saw : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _rotationSpeed = 50f;
+
+    private Vector3 _defaultRotation;
+
+    private void Start()
     {
-        
+        _defaultRotation = transform.rotation.eulerAngles;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Rotate();
+    }
+
+    private void Rotate()
+    {
+        float currentRotation = transform.rotation.eulerAngles.z;
+
+        float newRotation = currentRotation + _rotationSpeed + Time.deltaTime;
+
+        transform.rotation = Quaternion.Euler(_defaultRotation.x, _defaultRotation.y, newRotation);
     }
 }
